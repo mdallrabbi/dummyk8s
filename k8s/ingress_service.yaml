@@ -2,11 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      rewrite ^(/dashboard)$ $1/ redirect;
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-    kubernetes.io/ingress.class: 'nginx'
+    nginx.ingress.kubernetes.io/rewrite-target: /
   name: ingress-service
   # namespace: default
   # annotations:
@@ -15,41 +11,34 @@ spec:
   rules:
   - http:
       paths:
-        ################
-        # URL ROUTING #
-        ################
-        - path: /admin
-          backend:
-            serviceName: django-cluster-ip-service
-            servicePort: 8000
-        - path: /api
-          backend:
-            serviceName: django-cluster-ip-service
-            servicePort: 8000
-        ##########################
-        # STATIC FOLDER ROUTING #
-        ##########################
-        - path: /static/admin/
-          backend:
-            serviceName: django-cluster-ip-service
-            servicePort: 8000
-        - path: /static/rest_framework/
-          backend:
-            serviceName: django-cluster-ip-service
-            servicePort: 8000
-        - path: /static/
-          backend:
-            serviceName: react-cluster-ip-service
-            servicePort: 3000
-        - path: /media/
-          backend:
-            serviceName: react-cluster-ip-service
-            servicePort: 3000
-        ################
-        # URL ROUTING #
-        ################
-        - path: /
-          backend:
-            serviceName: react-cluster-ip-service
-            servicePort: 3000
+      - path: /admin
+        backend:
+          serviceName: django-cluster-ip-service
+          servicePort: 8000
+      - path: /api
+        backend:
+          serviceName: django-cluster-ip-service
+          servicePort: 8000
+
+      - path: /static/admin/
+        backend:
+          serviceName: django-cluster-ip-service
+          servicePort: 8000
+      - path: /static/rest_framework/
+        backend:
+          serviceName: django-cluster-ip-service
+          servicePort: 8000
+      - path: /static/
+        backend:
+          serviceName: react-cluster-ip-service
+          servicePort: 3000
+      - path: /media/
+        backend:
+          serviceName: react-cluster-ip-service
+          servicePort: 3000
+
+      - path: /
+        backend:
+          serviceName: react-cluster-ip-service
+          servicePort: 3000
         
