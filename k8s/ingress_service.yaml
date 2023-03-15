@@ -12,33 +12,36 @@ spec:
   - http:
       paths:
       - path: /admin
+        pathType: Prefix
         backend:
-          serviceName: django-cluster-ip-service
-          servicePort: 8000
-      - path: /api
-        backend:
-          serviceName: django-cluster-ip-service
-          servicePort: 8000
+          service:
+            name: django-cluster-ip-service
+            port:
+              number: 8000
+      # - path: /api
+      #   backend:
+      #     serviceName: django-cluster-ip-service
+      #     servicePort: 8000
 
-      - path: /static/admin/
-        backend:
-          serviceName: django-cluster-ip-service
-          servicePort: 8000
-      - path: /static/rest_framework/
-        backend:
-          serviceName: django-cluster-ip-service
-          servicePort: 8000
-      - path: /static/
-        backend:
-          serviceName: react-cluster-ip-service
-          servicePort: 3000
-      - path: /media/
-        backend:
-          serviceName: react-cluster-ip-service
-          servicePort: 3000
+      # - path: /static/admin/
+      #   backend:
+      #     serviceName: django-cluster-ip-service
+      #     servicePort: 8000
+      # - path: /static/rest_framework/
+      #   backend:
+      #     serviceName: django-cluster-ip-service
+      #     servicePort: 8000
+      # - path: /static/
+      #   backend:
+      #     serviceName: react-cluster-ip-service
+      #     servicePort: 3000
+      # - path: /media/
+      #   backend:
+      #     serviceName: react-cluster-ip-service
+      #     servicePort: 3000
 
-      - path: /
-        backend:
-          serviceName: react-cluster-ip-service
-          servicePort: 3000
+      # - path: /
+      #   backend:
+      #     serviceName: react-cluster-ip-service
+      #     servicePort: 3000
         
