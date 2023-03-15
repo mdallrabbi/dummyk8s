@@ -6,7 +6,7 @@ kind: Deployment
 metadata:
   name: react-deployment
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       component: react
@@ -18,6 +18,13 @@ spec:
       containers:
         - name: react-container
           image: mausamgaurav/react_dev_image:latest
+          resources:
+            limits:
+              memory: 256Mi
+              cpu: 300m
+            requests:
+              memory: 128Mi
+              cpu: 100m
           ports:
             - containerPort: 3000
           command: ["sh", "-c", "serve -s build -l 3000 --no-clipboard"]       
