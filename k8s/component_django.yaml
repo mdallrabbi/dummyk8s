@@ -18,6 +18,13 @@ spec:
       containers:
         - name: django-container
           image: mausamgaurav/django_dev_image:latest
+          resources:
+          limits:
+            memory: 256Mi
+            cpu: "0.5"
+          requests:
+            memory: 128Mi
+            cpu: "0.1"
           ports:
             - containerPort: 8000
           command: ["bash", "-c", "python manage.py runserver 0.0.0.0:8000"]
