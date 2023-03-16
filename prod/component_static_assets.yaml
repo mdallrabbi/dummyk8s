@@ -21,7 +21,7 @@ spec:
             claimName: static-assets-volume-claim
       containers:
         - name: nginx-container
-          image: mausamgaurav/nginx_dev_image:latest
+          image: allrabbiupay/nginx_dev_image:v-0.0.1
           resources:
             limits:
               memory: 256Mi
